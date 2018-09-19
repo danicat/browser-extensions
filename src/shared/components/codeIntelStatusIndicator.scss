@@ -66,6 +66,33 @@
     &__icon {
         width: 1rem !important;
         height: 1rem !important;
-        vertical-align: middle;
+        vertical-align: middle !important;
+        // top: unset !important;
+    }
+}
+
+.sg-toolbar-mount {
+    .code-intel-status-indicator .btn {
+        line-height: 1rem;
+    }
+
+    // & svg {
+    // position: unset !important;
+    // top: unset !important;
+    // }
+
+    .btn {
+        padding: 0 10px;
+        font-size: 13px;
+        line-height: 28px;
+        display: inline-block;
+        float: none;
+    }
+
+    .btn svg {
+        height: 15px !important;
+        width: 15px !important;
+        position: relative;
+        top: 2px;
     }
 }

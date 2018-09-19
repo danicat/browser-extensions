@@ -23,6 +23,7 @@ import { lspViaAPIXlang } from '../../shared/backend/lsp'
 import { ButtonProps, CodeViewToolbar } from '../../shared/components/CodeViewToolbar'
 import { eventLogger, sourcegraphUrl } from '../../shared/util/context'
 import { githubCodeHost } from '../github/code_intelligence'
+import { gitlabCodeHost } from '../gitlab/code_intelligence'
 import { phabricatorCodeHost } from '../phabricator/code_intelligence'
 import { findCodeViews } from './code_views'
 
@@ -156,7 +157,8 @@ function initCodeIntelligence(codeHost: CodeHost): { hoverifier: Hoverifier } {
     overlayMount.classList.add(`hover-overlay-mount__${codeHost.name}`)
     document.body.appendChild(overlayMount)
 
-    const relativeElement = document.body
+    // const relativeElement = document.body
+    const relativeElement = document.querySelector('.layout-page')! as HTMLElement
 
     const fetchJumpURL = createJumpURLFetcher(lspViaAPIXlang.fetchDefinition, toPrettyBlobURL)
 
@@ -308,7 +310,7 @@ async function injectCodeIntelligenceToCodeHosts(codeHosts: CodeHost[]): Promise
  * incomplete setup requests.
  */
 export async function injectCodeIntelligence(): Promise<Subscription> {
-    const codeHosts: CodeHost[] = [githubCodeHost, phabricatorCodeHost]
+    const codeHosts: CodeHost[] = [githubCodeHost, gitlabCodeHost, phabricatorCodeHost]
 
     return await injectCodeIntelligenceToCodeHosts(codeHosts)
 }
